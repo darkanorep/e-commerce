@@ -6,3 +6,4 @@ class AddProduct(forms.Form):
     brand = forms.CharField(label="Brand", max_length=200)
     description = forms.CharField(label="Description", max_length=200)
     price = forms.IntegerField(label="Price")
+    product_img = forms.ImageField(label="Image", required=False)

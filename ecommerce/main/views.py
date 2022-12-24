@@ -18,7 +18,7 @@ def product(response, id):
 
 def addproduct(response):
     if response.method == "POST":
-        form = AddProduct(response.POST)
+        form = AddProduct(response.POST, response.FILES)
 
         if form.is_valid():
             n = form.cleaned_data["name"]
@@ -26,10 +26,11 @@ def addproduct(response):
             b = form.cleaned_data["brand"]
             d = form.cleaned_data["description"]
             pr = form.cleaned_data["price"]
+            pic = form.cleaned_data["product_img"]
 
-            p = Product(name = n, category = c, brand = b, description = d, price = pr)
+            p = Product(name = n, category = c, brand = b, description = d, price = pr, product_img = pic)
             p.save()
-        
+            
         return HttpResponseRedirect("/products")
     
     else:

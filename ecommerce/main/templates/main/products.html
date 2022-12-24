@@ -6,7 +6,7 @@
 <ul>
     {% for product in p %}
     <li>{{product.name}}</li>
-    <img src="../../../media/{{product.product_img}}" alt="{{product.name}}_pic" width="100px" height="100px">
+    <a href="{{product.id}}"><img src="../../../media/{{product.product_img}}" alt="{{product.name}}_pic" width="100px" height="100px"></a>
     {% endfor %}
 </ul>
 

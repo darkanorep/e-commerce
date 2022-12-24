@@ -2,10 +2,9 @@
 
 {% block content %}
 <h1>Add Product</h1>
-<form method="post" action="/products/create">
+<form method="post" enctype="multipart/form-data" action="/products/create">
     {% csrf_token %}
     {{form.as_p}}
-    <input type="file">
     <button type="submit" name="submit">Submit</button>
 </form>
 {% endblock %}

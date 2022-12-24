@@ -10,5 +10,11 @@
     <li>{{p.description}}</li>
     <li>{{p.price}}</li>
     <img src="../../../media/{{p.product_img}}" alt="{{p.name}}_pic" width="400px" height="400px">
+    {% if user.is_authenticated %}
+        <button>Add to cart</button>
+    {% else %}
+        <button disabled>Add to cart</button>
+        <p>Please <a href="/login">Login</a> to Add to cart this item</p>
+    {% endif %}
 </ul>
 {% endblock %}
