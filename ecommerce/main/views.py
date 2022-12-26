@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.http import HttpResponse, HttpResponseRedirect
-from .models import Product
+from django.http.response import JsonResponse, HttpResponseRedirect
+from .models import Product, Cart
 from .forms import AddProduct
 
 def index(response):
@@ -15,6 +15,11 @@ def products(response):
 def product(response, id):
     p = Product.objects.get(id=id)
     return render(response, "main/product.html", {"p":p})
+
+def mycart(response):
+    cart = Cart.objects.filter(user = response.user)
+
+    return render(response, "main/cart.html", {"cart":cart})
 
 def addproduct(response):
     if response.method == "POST":
@@ -37,3 +42,4 @@ def addproduct(response):
         form = AddProduct()
 
     return render(response, "main/addproduct.html", {"form":form})
+

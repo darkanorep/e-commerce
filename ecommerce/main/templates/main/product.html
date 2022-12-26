@@ -5,16 +5,24 @@
 {% block content %}
 <h1>{{p.name}}</h1>
 <ul>
+    <input type="text" value="{{p.id}}" id="prod-id"hidden>
+    {% csrf_token %}
     <li>{{p.category}}</li>
     <li>{{p.brand}}</li>
     <li>{{p.description}}</li>
     <li>{{p.price}}</li>
     <img src="../../../media/{{p.product_img}}" alt="{{p.name}}_pic" width="400px" height="400px">
     {% if user.is_authenticated %}
-        <button>Add to cart</button>
+        <input type="number" name="numberOfQty" id='numberOfQty' value='1' hidden/>
+        <button id='minus-btn' onclick="decrement()">-</button>
+        <span id="quantity">1</span>
+        <button onclick="increment()">+</button>
+        <button id="add-btn">Add to cart</button>
     {% else %}
         <button disabled>Add to cart</button>
         <p>Please <a href="/login">Login</a> to Add to cart this item</p>
     {% endif %}
 </ul>
+{% load static %}  
+<script src="{% static '/js/product.js' %}" type="text/javascript"></script>
 {% endblock %}
