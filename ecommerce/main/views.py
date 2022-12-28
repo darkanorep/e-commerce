@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
-from django.http.response import JsonResponse, HttpResponseRedirect
+from django.http.response import JsonResponse, HttpResponseRedirect, HttpResponse
 from .models import Product, Cart
 from .forms import AddProduct
+from .cart import removeitem
 
 def index(response):
     return render(response, "main/index.html")
@@ -17,9 +18,17 @@ def product(response, id):
     return render(response, "main/product.html", {"p":p})
 
 def mycart(response):
-    cart = Cart.objects.filter(user = response.user)
+    if response.user.is_authenticated == True:
+        cart = Cart.objects.filter(user = response.user)
 
-    return render(response, "main/cart.html", {"cart":cart})
+        return render(response, "main/cart.html", ({"cart": cart}))
+
+    return render(response, "main/cart.html")
+
+# def removefromcart(response, id):
+#     Cart.objects.filter(id=id).delete()
+
+#     return redirect("/cart")
 
 def addproduct(response):
     if response.method == "POST":

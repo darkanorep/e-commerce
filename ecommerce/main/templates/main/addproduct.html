@@ -2,13 +2,11 @@
 
 {% block content %}
 {% if user.is_staff %}
-    <h1>Add Product</h1>
     <form method="post" enctype="multipart/form-data" action="/products/create">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit" name="submit">Submit</button>
     </form>
-
 {% else %}
     <h1>Error 404</h1>
 {% endif %}

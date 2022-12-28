@@ -23,6 +23,8 @@ function decrement() {
 
 $('#add-btn').click(function () {
 
+    console.log("add to cart")
+
     let productId = $('#prod-id').val();
     let currCount = $( "#numberOfQty").val(currentCount).val();
     let token = $('input[name = csrfmiddlewaretoken]').val();
@@ -42,4 +44,3 @@ $('#add-btn').click(function () {
     })
 
 })
-
