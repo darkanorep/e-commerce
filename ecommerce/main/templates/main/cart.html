@@ -1,7 +1,6 @@
 {% extends "main/base.html" %}
 
 {% block content %}
-
 {% if user.is_authenticated %}
     {% if cart %}
     <table class="table">
@@ -16,7 +15,12 @@
                 <input type="text" value="{{item.id}}" id="item-id" hidden>
                 {% csrf_token %}
                 <td><a href="/products/{{item.product.id}}">{{item.product.name}}</a></td>
-                <td>{{item.quantity}}</td>
+                <td>
+                    <button id="minBtn" onclick="decrement()">-</button>
+                    <input type="number" value="{{item.quantity}}" id="qtyOfItem" hidden>
+                    <span id="quantity">{{item.quantity}}</span>
+                    <button onclick="increment()">+</button>
+                </td>
                 <td>{{item.product.price}}</td>
                 {% csrf_token %}
                 <td><a href="/cart/remove/{{item.id}}"><button id="remove-btn">Remove</button></a></td>
@@ -29,8 +33,44 @@
 {% else %}
     <h3>Please Login to view your cart</h3>
 {% endif %}
+<script type="text/javascript">
 
-{% load static %}  
-<script src="{% static '/js/removeItem.js' %}" type="text/javascript"></script>
+    let quantity = document.getElementById("quantity")
 
+    function increment() {
+        let qtyOfItem = parseInt(document.getElementById('qtyOfItem').value);
+        qtyOfItem = isNaN(qtyOfItem) ? 0 : qtyOfItem;
+        qtyOfItem++;
+        document.getElementById('qtyOfItem').value = qtyOfItem;
+        quantity.textContent = qtyOfItem;
+    }
+
+    function decrement(input) {
+        let qtyOfItem = parseInt(document.getElementById('qtyOfItem').value);
+        qtyOfItem = isNaN(qtyOfItem) ? 0 : qtyOfItem;
+        qtyOfItem--;
+        document.getElementById('qtyOfItem').value = qtyOfItem;
+        quantity.textContent = qtyOfItem;
+    }
+
+    // $('#remove-btn').click(function () {
+
+    // let itemId = $('#item-id').val();
+    // let token = $('input[name = csrfmiddlewaretoken]').val();
+
+    // $.ajax({
+    //     method: "POST",
+    //     url: "#",
+    //     data: {
+    //         "item_id": itemId,
+    //         csrfmiddlewaretoken: token
+    //     },
+    //     dataType: "dataType",
+    //     success: function(response) {
+    //         console.log("removed")
+    //     }
+
+    // })
+    // })
+</script>
 {% endblock %}

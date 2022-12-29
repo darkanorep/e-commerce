@@ -13,9 +13,8 @@
     <li>{{p.price}}</li>
     <img src="../../../media/{{p.product_img}}" alt="{{p.name}}_pic" width="400px" height="400px">
     {% if user.is_authenticated %}
-        <input type="number" name="numberOfQty" id='numberOfQty' value='1' hidden/>
         <button id='minus-btn' onclick="decrement()">-</button>
-        <span id="quantity">1</span>
+        <input type="number" name="numberOfQty" id='numberOfQty' value='1'/>
         <button onclick="increment()">+</button>
         <button id="add-btn">Add to cart</button>
     {% else %}
@@ -23,6 +22,5 @@
         <p>Please <a href="/login">Login</a> to Add to cart this item</p>
     {% endif %}
 </ul>
-{% load static %}  
-<script src="{% static '/js/addProduct.js' %}" type="text/javascript"></script>
+<script src="../../static/js/addProduct.js" type="text/javascript"></script>
 {% endblock %}

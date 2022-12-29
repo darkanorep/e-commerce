@@ -1,24 +1,21 @@
 const minBtn = document.getElementById("minus-btn")
-let quantity = document.getElementById("quantity")
-let count = 1;
-let currentCount = 1;
 
 function increment() {
-    currentCount++;
-    count += 1;
-    quantity.textContent = count;
+    let numberOfQty = parseInt(document.getElementById('numberOfQty').value);
+    numberOfQty = isNaN(numberOfQty) ? 0 : numberOfQty;
+    numberOfQty++;
+    document.getElementById('numberOfQty').value = numberOfQty;
+
+    if (numberOfQty > 0 ) minBtn.disabled = false;
 }
 
 function decrement() {
-    if (count == 0) {
-        minBtn.disabled = true;
-    } else if (count == 1){
-        minBtn.disabled = false;
-    }else {
-        currentCount--;
-        count -= 1;
-        quantity.textContent = count;   
-    }
+    let numberOfQty = parseInt(document.getElementById('numberOfQty').value, 10);
+    numberOfQty = isNaN(numberOfQty) ? 0 : numberOfQty;
+    numberOfQty--;
+    document.getElementById('numberOfQty').value = numberOfQty;
+
+    if (numberOfQty == 0 ) minBtn.disabled = true;
 }
 
 $('#add-btn').click(function () {
@@ -26,7 +23,7 @@ $('#add-btn').click(function () {
     console.log("add to cart")
 
     let productId = $('#prod-id').val();
-    let currCount = $( "#numberOfQty").val(currentCount).val();
+    let currCount = $( "#numberOfQty").val();
     let token = $('input[name = csrfmiddlewaretoken]').val();
 
     $.ajax({
