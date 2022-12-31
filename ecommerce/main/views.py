@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.http.response import JsonResponse, HttpResponseRedirect, HttpResponse
 from .models import Product, Cart
-from .forms import AddProduct
+from .forms import AddProduct, AddReview
 from .cart import removeitem
 
 def index(response):
@@ -15,7 +15,8 @@ def products(response):
 
 def product(response, id):
     p = Product.objects.get(id=id)
-    return render(response, "main/product.html", {"p":p})
+    form = AddReview()
+    return render(response, "main/product.html", {"p":p, "form":form})
 
 def mycart(response):
     if response.user.is_authenticated == True:
@@ -29,7 +30,6 @@ def mycart(response):
 #     Cart.objects.filter(id=id).delete()
 
 #     return redirect("/cart")
-
 def addproduct(response):
     if response.method == "POST":
         form = AddProduct(response.POST, response.FILES)

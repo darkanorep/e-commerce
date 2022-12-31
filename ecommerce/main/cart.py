@@ -21,7 +21,9 @@ def addtocart(response):
                 else:
                     quantity = int(response.POST.get("quantity"))
 
-                    Cart.objects.create(user = response.user, product_id=product_id, quantity=quantity)
+                    if quantity != 0 :
+                        Cart.objects.create(user = response.user, product_id=product_id, quantity=quantity)
+                
                     return JsonResponse({"status":" Successfully Added"})
             else:
                 return JsonResponse({"status":" No such Product found"})

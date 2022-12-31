@@ -17,6 +17,16 @@
         <input type="number" name="numberOfQty" id='numberOfQty' value='1'/>
         <button onclick="increment()">+</button>
         <button id="add-btn">Add to cart</button>
+        <form method="POST" enctype="multipart/form-data" id="add-rvw" name="add-rvw">
+            {% csrf_token %}
+            <label>Add Review</label>
+            <textarea id="comment"></textarea>
+            <!-- <label>Add Image <span>(Optional)</span></label>
+            <input type="file" id="review_img"> -->
+            
+            <!-- {{form.as_p}} -->
+            <button type="submit" name="submit">Submit</button>
+        </form>
     {% else %}
         <button disabled>Add to cart</button>
         <p>Please <a href="/login">Login</a> to Add to cart this item</p>

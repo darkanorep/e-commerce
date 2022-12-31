@@ -7,3 +7,7 @@ class AddProduct(forms.Form):
     description = forms.CharField(label="Description", widget=forms.Textarea)
     price = forms.IntegerField(label="Price")
     product_img = forms.ImageField(label="Image", required=False)
+
+class AddReview(forms.Form):
+    review = forms.CharField(label="Review", widget=forms.Textarea, required=False)
+    review_img = forms.ImageField(label="Image", required=False)
