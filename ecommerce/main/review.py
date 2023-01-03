@@ -13,13 +13,11 @@ def addreview(response):
         
             if (review_check):
                 if (Review.objects.filter(user=response.user.id, product_id=product_id)):
-              
-
+                    print("Already Reviewed")
                     return JsonResponse({"status": "Already Reviewed"})
+                    
                 else:
-
                     Review.objects.create(user = response.user, product_id=product_id, comment=comment, review_img=review_img)
-                
                     return JsonResponse({"status":" Successfully Added"})
             else:
                 return JsonResponse({"status":" No such Review found"})

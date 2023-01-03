@@ -27,9 +27,24 @@
             <!-- {{form.as_p}} -->
             <button type="submit" name="submit">Submit</button>
         </form>
+
+        {% for reviews in review %}
+            {{reviews.user.username}} - {{reviews.comment}}
+            <br>
+        {% endfor %}
+        
     {% else %}
         <button disabled>Add to cart</button>
         <p>Please <a href="/login">Login</a> to Add to cart this item</p>
+        <form disabled>
+            <label>Add Review</label>
+            <p>Please <a href="/login">Login</a> to Add to add review to this item.</p>
+            <textarea disabled></textarea >
+            <button disabled>Submit</button>
+        </form>
+        {% for reviews in review %}
+            <li>{{reviews.comment}}</li>
+        {% endfor %}
     {% endif %}
 </ul>
 <script src="../../static/js/addProduct.js" type="text/javascript"></script>

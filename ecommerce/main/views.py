@@ -1,28 +1,41 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 from django.http.response import JsonResponse, HttpResponseRedirect, HttpResponse
-from .models import Product, Cart
+from .models import Product, Cart, Review
 from .forms import AddProduct, AddReview
-from .cart import removeitem
 
+    
 def index(response):
+    if response.user.is_authenticated:
+        cartNumber = Cart.objects.filter(user = response.user).count()
+        return render(response, "main/index.html", {"cartNumber":cartNumber})
     return render(response, "main/index.html")
 
 def products(response):
     p = Product.objects.all()
+    if response.user.is_authenticated:
+        cartNumber = Cart.objects.filter(user = response.user).count()
+        return render(response, "main/products.html", {"p":p, "cartNumber":cartNumber})
     return render(response, "main/products.html", {"p":p})
 
 def product(response, id):
     p = Product.objects.get(id=id)
-    form = AddReview()
-    return render(response, "main/product.html", {"p":p, "form":form})
+    review = Review.objects.filter(product_id=id)
+    
+    if response.user.is_authenticated:
+        cartNumber = Cart.objects.filter(user = response.user).count()
+        return render(response, "main/product.html", {"p":p, "cartNumber":cartNumber, "review":review})
+    
+    return render(response, "main/product.html", {"p":p, "review":review})
 
 def mycart(response):
-    if response.user.is_authenticated == True:
+    if response.user.is_authenticated:
         cart = Cart.objects.filter(user = response.user)
+        cartNumber = Cart.objects.filter(user = response.user).count()
 
-        return render(response, "main/cart.html", ({"cart": cart}))
+        return render(response, "main/cart.html", ({"cart": cart, "cartNumber":cartNumber}))
 
     return render(response, "main/cart.html")
 

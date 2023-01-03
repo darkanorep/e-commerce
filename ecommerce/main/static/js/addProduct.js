@@ -21,9 +21,9 @@ function decrement() {
 
 
 $('#add-btn').click(function () {
-
-    console.log("add to cart")
-
+    
+    location.reload(true);
+        
     let currCount = $( "#numberOfQty").val();
 
     $.ajax({
@@ -37,6 +37,7 @@ $('#add-btn').click(function () {
         dataType: 'dataType',
         success: function(response) {
             console.log("add to cart")
+            
         }
     })
 

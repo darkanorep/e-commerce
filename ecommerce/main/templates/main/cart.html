@@ -5,17 +5,18 @@
     {% if cart %}
     <table class="table">
         <tr>
-            <th>Name</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Action</th>
+            <!-- <th></th>
+            <th></th>
+            <th></th>
+            <th></th> -->
         </tr>
         {% for item in cart %}
             <tr>
                 {% csrf_token %}
+                <input type="checkbox" name="item[]" value="{{item.product.price}}" id="checkbox" checked hidden>
                 <td><a href="/products/{{item.product.id}}">{{item.product.name}}</a></td>
                 <td>
-                    <span id="quantity">{{item.quantity}}</span>
+                    <span id="quantity" name="quantity[]">{{item.quantity}}</span>
                 </td>
                 <td>
                     <span>{{item.product.price}}</span>
@@ -25,10 +26,13 @@
             </tr>
         {% endfor %}
     </table>
+    <h6>Total: <span id="total">0</span></h6>
+    <button>Checkout</button>
     {% else %}
     <h1>Empty Cart</h1>
     {% endif %}
 {% else %}
     <h3>Please Login to view your cart</h3>
 {% endif %}
+<script src="../../static/js/checkout.js" type="text/javascript"></script>
 {% endblock %}
