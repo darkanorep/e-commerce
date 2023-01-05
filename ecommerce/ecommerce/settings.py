@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "crispy_forms",
     'main.apps.MainConfig',
     'user.apps.UserConfig'
 ]
@@ -64,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main.context_processors.add_variable_to_context',
             ],
         },
     },
@@ -118,6 +120,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 LOGIN_REDIRECT_URL = '/products'
 LOGOUT_REDIRECT_URL = '/login'

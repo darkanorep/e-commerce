@@ -11,6 +11,7 @@ def index(response):
     if response.user.is_authenticated:
         cartNumber = Cart.objects.filter(user = response.user).count()
         return render(response, "main/index.html", {"cartNumber":cartNumber})
+
     return render(response, "main/index.html")
 
 def products(response):

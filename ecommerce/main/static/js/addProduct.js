@@ -41,6 +41,8 @@ $('#add-btn').click(function () {
         }
     })
 
+    alert("Add to cart success")
+
 })
 
 $('#add-rvw').submit(function () {
