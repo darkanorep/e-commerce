@@ -1,6 +1,5 @@
 let productId = $('#prod-id').val();
 let token = $('input[name = csrfmiddlewaretoken]').val();
-
 const minBtn = document.getElementById("minus-btn")
 let numberOfQty = parseInt(document.getElementById('numberOfQty').value, 10);
 numberOfQty = isNaN(numberOfQty) ? 0 : numberOfQty;

@@ -12,11 +12,18 @@
         </tr>
         {% for item in cart %}
             <tr>
-                {% csrf_token %}
-                <input type="checkbox" name="item[]" value="{{item.product.price}}" id="checkbox" checked hidden>
+                <td>
+                    {{item.id}}
+                    <input type="checkbox" name="item[]" value="{{item.product.price}}" id="checkbox" checked hidden>
+                    <input type="text" value="{{item.product.id}}" id="prod-id" hidden>
+                    {% csrf_token %}
+                </td>
                 <td><a href="/products/{{item.product.id}}">{{item.product.name}}</a></td>
                 <td>
-                    <span id="quantity" name="quantity[]">{{item.quantity}}</span>
+                    <input type="number" value="{{item.quantity}}" name="numberOfQty" id='{{item.product.id}}-numberOfQty' hidden>
+                    <button id="{{ item.product_id }}-decrement-btn" class="decrement-btn">-</button>
+                    <span id="{{item.product.id}}-quantity" name="quantity[]">{{item.quantity}}</span>
+                    <button id="{{ item.product_id }}-increment-btn" class="increment-btn">+</button>
                 </td>
                 <td>
                     <span>{{item.product.price}}</span>
@@ -34,5 +41,5 @@
 {% else %}
     <h3>Please Login to view your cart</h3>
 {% endif %}
-<script src="../../static/js/checkout.js" type="text/javascript"></script>
+<script src="../../static/js/cart.js" type="text/javascript"></script>
 {% endblock %}

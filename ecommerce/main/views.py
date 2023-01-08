@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
 
 # Create your views here.
 from django.http.response import JsonResponse, HttpResponseRedirect, HttpResponse
 from .models import Product, Cart, Review
 from .forms import AddProduct, AddReview
+from django.contrib.auth import authenticate, login
 
-    
+
 def index(response):
     if response.user.is_authenticated:
         cartNumber = Cart.objects.filter(user = response.user).count()
@@ -40,10 +41,6 @@ def mycart(response):
 
     return render(response, "main/cart.html")
 
-# def removefromcart(response, id):
-#     Cart.objects.filter(id=id).delete()
-
-#     return redirect("/cart")
 def addproduct(response):
     if response.method == "POST":
         form = AddProduct(response.POST, response.FILES)
