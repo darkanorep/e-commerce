@@ -13,23 +13,23 @@
         {% for item in cart %}
             <tr>
                 <td>
-                    {{item.id}}
+                    <input type="number" value="{{item.id}}" id="{{ item.product.id }}-item" hidden>
                     <input type="checkbox" name="item[]" value="{{item.product.price}}" id="checkbox" checked hidden>
-                    <input type="text" value="{{item.product.id}}" id="prod-id" hidden>
+                    <img src="../../../media/{{item.product.product_img}}" alt="{{p.name}}_pic" width="50px" height="50px">
                     {% csrf_token %}
                 </td>
                 <td><a href="/products/{{item.product.id}}">{{item.product.name}}</a></td>
                 <td>
                     <input type="number" value="{{item.quantity}}" name="numberOfQty" id='{{item.product.id}}-numberOfQty' hidden>
-                    <button id="{{ item.product_id }}-decrement-btn" class="decrement-btn">-</button>
+                    <button id="{{ item.product.id }}-decrement-btn" class="decrement-btn"><i class='bx bx-minus'></i></button>
                     <span id="{{item.product.id}}-quantity" name="quantity[]">{{item.quantity}}</span>
-                    <button id="{{ item.product_id }}-increment-btn" class="increment-btn">+</button>
+                    <button id="{{ item.product.id }}-increment-btn" class="increment-btn"><i class='bx bx-plus'></i></button>
                 </td>
                 <td>
                     <span>{{item.product.price}}</span>
                 </td>
                 {% csrf_token %}
-                <td><a href="/cart/remove/{{item.id}}"><button id="remove-btn">Remove</button></a></td>
+                <td><a href="/cart/remove/{{item.id}}"><button id="remove-btn"><i class='bx bxs-trash-alt'></i></button></a></td>
             </tr>
         {% endfor %}
     </table>

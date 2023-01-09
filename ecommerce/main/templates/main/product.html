@@ -13,9 +13,9 @@
     <li>{{p.price}}</li>
     <img src="../../../media/{{p.product_img}}" alt="{{p.name}}_pic" width="400px" height="400px">
     {% if user.is_authenticated %}
-        <button id='minus-btn' onclick="decrement()">-</button>
-        <input type="number" name="numberOfQty" id='numberOfQty' value='1'/>
-        <button onclick="increment()">+</button>
+        <button id='minus-btn' onclick="decrement()"><i class='bx bx-minus'></i></button>
+        <input type="text" name="numberOfQty" id='numberOfQty' value='1' min='1'/>
+        <button onclick="increment()"><i class='bx bx-plus'></i></button>
         <button id="add-btn">Add to cart</button>
         <form method="POST" enctype="multipart/form-data" id="add-rvw" name="add-rvw">
             {% csrf_token %}

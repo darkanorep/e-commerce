@@ -4,7 +4,14 @@ const minBtn = document.getElementById("minus-btn")
 let numberOfQty = parseInt(document.getElementById('numberOfQty').value, 10);
 numberOfQty = isNaN(numberOfQty) ? 0 : numberOfQty;
 
+jQuery('#numberOfQty').keyup(function () { 
+    this.value = this.value.replace(/[^0-9]/g,'1');
+    this.value = this.value.replace(/^[0]+/g,'1');
+    this.value = this.value.replace(/^[-0]+/g,'1');
+});
+
 function increment() {
+    console.log("clicked")
     numberOfQty++;
     document.getElementById('numberOfQty').value = numberOfQty;
 

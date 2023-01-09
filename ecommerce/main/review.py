@@ -13,7 +13,6 @@ def addreview(response):
         
             if (review_check):
                 if (Review.objects.filter(user=response.user.id, product_id=product_id)):
-                    print("Already Reviewed")
                     return JsonResponse({"status": "Already Reviewed"})
                     
                 else:
