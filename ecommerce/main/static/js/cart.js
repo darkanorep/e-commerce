@@ -37,17 +37,17 @@ total()
 let token = $('input[name = csrfmiddlewaretoken]').val();
 
 $(".increment-btn").click(function () {
+    let itemId = this.value.split('-')[0]
     let productId = this.id.split('-')[0]
     let numberOfQty = parseInt(document.getElementById(`${productId}-numberOfQty`).value, 10);
-    // numberOfQty = isNaN(numberOfQty) ? 0 : numberOfQty;
     $(`#${productId}-numberOfQty`).val(numberOfQty + 1)
     $(`#${productId}-quantity`).text(numberOfQty + 1);
     
     $.ajax({
         method: "POST",
-        url: "/addtocart",
+        url: "/updatecart",
         data: {
-            "product_id": productId,
+            "item_id": productId,
             "quantity": 1,
             csrfmiddlewaretoken: token
         },
@@ -62,10 +62,10 @@ $(".increment-btn").click(function () {
 
 
 $(".decrement-btn").click(function () {
+    let itemID = this.value.split('-')[0]
     let productId = this.id.split('-')[0]
     let numberOfQty = parseInt(document.getElementById(`${productId}-numberOfQty`).value, 10);
-    let itemId = parseInt(document.getElementById(`${productId}-item`).value, 10);
-    // numberOfQty = isNaN(numberOfQty) ? 0 : numberOfQty;
+    let itemId = parseInt(document.getElementById(`${itemID}-item`).value, 10);
     $(`#${productId}-numberOfQty`).val(numberOfQty - 1)
     $(`#${productId}-quantity`).text(numberOfQty - 1);
 
@@ -79,9 +79,9 @@ $(".decrement-btn").click(function () {
     } else {
         $.ajax({
             method: "POST",
-            url: "/addtocart",
+            url: "/updatecart",
             data: {
-                "product_id": productId,
+                "item_id": productId,
                 "quantity": -1,
                 csrfmiddlewaretoken: token
             }

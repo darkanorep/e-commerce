@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Product(models.Model):
     name = models.CharField(max_length=200)
+    gender = models.CharField(max_length=200)
     category = models.CharField(max_length=200)
     brand = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
@@ -16,6 +17,7 @@ class Product(models.Model):
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    description = models.TextField(null = True, blank=True)
     quantity = models.IntegerField()
 
 class Review(models.Model):

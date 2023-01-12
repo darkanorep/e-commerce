@@ -13,6 +13,19 @@
     <li>{{p.price}}</li>
     <img src="../../../media/{{p.product_img}}" alt="{{p.name}}_pic" width="400px" height="400px">
     {% if user.is_authenticated %}
+        <form id="description">
+            {% if p.category == 'Footwear' %}
+                <input type="radio" name="description" value="40">
+                <label for="html">40</label><br>
+                <input type="radio" name="description" value="41">
+                <label for="css">41</label><br>
+            {% else %}
+                <input type="radio" name="description" value="S">
+                <label for="html">S</label><br>
+                <input type="radio" name="description" value="M">
+                <label for="css">M</label><br>
+            {% endif %}
+        </form>
         <button id='minus-btn' onclick="decrement()"><i class='bx bx-minus'></i></button>
         <input type="text" name="numberOfQty" id='numberOfQty' value='1' min='1'/>
         <button onclick="increment()"><i class='bx bx-plus'></i></button>

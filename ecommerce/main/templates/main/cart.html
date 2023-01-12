@@ -20,10 +20,13 @@
                 </td>
                 <td><a href="/products/{{item.product.id}}">{{item.product.name}}</a></td>
                 <td>
-                    <input type="number" value="{{item.quantity}}" name="numberOfQty" id='{{item.product.id}}-numberOfQty' hidden>
-                    <button id="{{ item.product.id }}-decrement-btn" class="decrement-btn"><i class='bx bx-minus'></i></button>
-                    <span id="{{item.product.id}}-quantity" name="quantity[]">{{item.quantity}}</span>
-                    <button id="{{ item.product.id }}-increment-btn" class="increment-btn"><i class='bx bx-plus'></i></button>
+                    <span id="{{item.id}}-description">Size: {{item.description}}</span>
+                </td>
+                <td>
+                    <input type="number" value="{{item.quantity}}" name="numberOfQty" id='{{item.id}}-numberOfQty' hidden>
+                    <button id="{{ item.id }}-decrement-btn" class="decrement-btn" value="{{ item.product.id }}-decrement-btn"><i class='bx bx-minus'></i></button>
+                    <span id="{{item.id}}-quantity" name="quantity[]">{{item.quantity}}</span>
+                    <button id="{{ item.id }}-increment-btn" class="increment-btn" value="{{ item.product.id }}-increment-btn"><i class='bx bx-plus'></i></button>
                 </td>
                 <td>
                     <span>{{item.product.price}}</span>

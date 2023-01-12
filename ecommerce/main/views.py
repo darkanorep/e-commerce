@@ -47,13 +47,14 @@ def addproduct(response):
 
         if form.is_valid():
             n = form.cleaned_data["name"]
+            g = form.cleaned_data["gender"]
             c = form.cleaned_data["category"]
             b = form.cleaned_data["brand"]
             d = form.cleaned_data["description"]
             pr = form.cleaned_data["price"]
             pic = form.cleaned_data["product_img"]
 
-            p = Product(name = n, category = c, brand = b, description = d, price = pr, product_img = pic)
+            p = Product(name = n, gender = g, category = c, brand = b, description = d, price = pr, product_img = pic)
             p.save()
             
         return HttpResponseRedirect("/products")

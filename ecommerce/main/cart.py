@@ -7,22 +7,21 @@ def addtocart(response):
         if response.method == "POST":
             product_id = int(response.POST.get("product_id"))
             product_check = Product.objects.get(id=product_id)
+            quantity = int(response.POST.get("quantity"))
+            description = response.POST.get("description")
 
             if (product_check):
-                if (Cart.objects.filter(user=response.user.id, product_id=product_id)):
-
-                    quantity = int(response.POST.get("quantity"))
+                if (Cart.objects.filter(user=response.user.id, description=description)):
                         
-                    cart = Cart.objects.get(user = response.user, product_id=product_id)
+                    cart = Cart.objects.get(user = response.user, product_id=product_id, description=description)
                     cart.quantity += quantity
                     cart.save()
 
                     return JsonResponse({"status": "Product Already in Cart"})
                 else:
-                    quantity = int(response.POST.get("quantity"))
 
                     if quantity != 0 :
-                        Cart.objects.create(user = response.user, product_id=product_id, quantity=quantity)
+                        Cart.objects.create(user = response.user, product_id=product_id, quantity=quantity, description=description)
                 
                     return JsonResponse({"status":" Successfully Added"})
             else:
@@ -30,6 +29,23 @@ def addtocart(response):
             
         return redirect("/")
     
+    return redirect("/")
+
+def updatecart(response):
+    if response.user.is_authenticated:
+        if response.method == "POST":
+            item_id = int(response.POST.get("item_id"))
+            quantity = int(response.POST.get("quantity"))
+
+            cart = Cart.objects.get(id = item_id)
+
+            cart.quantity += quantity
+            cart.save()
+                
+            return JsonResponse({"status": "Product Already in Cart"})
+        
+        return JsonResponse({"status":" Successfully Added"})
+
     return redirect("/")
 
 def removeitem(response, id):

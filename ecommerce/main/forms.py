@@ -2,17 +2,18 @@ from django import forms
 
 class AddProduct(forms.Form):
 
-    CATEGORIES = (  ('Top', 'Top'),
-                    ('Bottom', 'Bottom'),
-                    ('Shoes', 'Shoes'),
-                    ('Watch', 'Watch'),
-                    ('Jacket', 'Jacket'),
-                    ('Cap', 'Cap'),
-                    ('Bag', 'Bag'),
-                    ('Accessories', 'Accessories'),
-                    ('Mobile Phone', 'Mobile Phone'),)
+    GENDER = (  ('Men\'s', 'Men\'s'),
+                ('Ladies', 'Ladies'),
+                ('Teens', 'Teens'),
+                ('Kids', 'Kids'),)
+
+    CATEGORIES = (  ('Tops', 'Tops'),
+                    ('Bottoms', 'Bottoms'),
+                    ('Footwear', 'Footwear'),
+                    ('Accessories', 'Accessories'),)
 
     name = forms.CharField(label="Product Name",max_length=200)
+    gender = forms.ChoiceField(choices = GENDER)
     category = forms.ChoiceField(choices = CATEGORIES)
     brand = forms.CharField(label="Brand", max_length=200)
     description = forms.CharField(label="Description", widget=forms.Textarea)
