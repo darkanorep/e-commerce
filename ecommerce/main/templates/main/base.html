@@ -72,76 +72,53 @@
         </nav>
     </header>
     {% else %}
-    <header class="section-header" id="navbar_top" style="background: white;">	
-        <section class="header-main" style="margin: 15px 0px;">
-            <div class="container">
-                <div class="row gy-3 align-items-center">
-                    <div class="col-lg-2 col-sm-4 col-4">
-                        <a href="#" class="navbar-brand">
-                            <img class="logo" height="40" src="../../static/assets/ishop-logo.png">
-                        </a> <!-- brand end.// -->
-                    </div>
-                    <div class="order-lg-last col-lg-5 col-sm-8 col-8">
-                        <div class="float-end">
-                            <a href="/login" class="btn btn-light">Sign in</a>
-                            <a href="/register" class="btn btn-light">Register</a>
-                        </div>
-                    </div> <!-- col end.// -->
-                    <div class="col-lg-5 col-md-12 col-12">
-
-                    </div> <!-- col end.// -->
-                    
-                </div> <!-- row end.// -->
-            </div> <!-- container end.// -->
-        </section> <!-- header-main end.// --> 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark" data-bs-theme="dark">
-            <div class="container">
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/" style="color: white;">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/products" style="color: white;">Products</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
-                      Categories
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                  </li>
+    <header class="container">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #D9D9D9;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">catalog</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
-              </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  pages
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+            <div class="credential-btn-wrapper container-fluid">
+              <li class="nav-item credential">
+                <a href="#"><button class="btn login-btn">Login</button></a>
+              </li>
+              <span class="divider"></span>
+              <li class="nav-item credential">
+                <a href="#"><button class="btn signup-btn">Signup</button></a>
+              </li>
             </div>
-        </nav>
+          </div>
+        </div>
+      </nav>
     </header>
     {% endif %}
     {% block content %}
 
     {% endblock %}
-    <script>
-        document.addEventListener("DOMContentLoaded", function(){
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                document.getElementById('navbar_top').classList.add('fixed-top');
-                // add padding top to show content behind navbar
-                navbar_height = document.querySelector('.navbar').offsetHeight;
-                document.body.style.paddingTop = navbar_height + 'px';
-                } else {
-                document.getElementById('navbar_top').classList.remove('fixed-top');
-                // remove padding top from body
-                document.body.style.paddingTop = '0';
-                } 
-            });
-        }); 
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </html>
