@@ -5,27 +5,107 @@
 {% block content %}
 <section>
    <div>
-      <div class="d-flex header-wrapper">
-         <div class="men">
-            <span class="men-header">men</span>
-            <div class="rectangle">
-               <span class="shop-now">shop now</span>
-               <!-- <img src="../../static/assets/arrow.svg"> -->
+      <div id="header-wrapper">
+         <div class="d-flex header-wrapper">
+            <div class="men">
+               <span class="men-header">men</span>
+               <div class="rectangle">
+                  <div class="shop-btn-wrapper">
+                     <span class="shop-now">shop now</span>
+                     <img class="arrow" src="../../static/assets/arrow.svg">
+                  </div>
+               </div>
+            </div>
+            <div class="women">
+               <span class="women-header">women</span>
+               <div class="rectangle">
+                  <div class="shop-btn-wrapper">
+                     <span class="shop-now">shop now</span>
+                     <img class="arrow" src="../../static/assets/arrow.svg">
+                  </div>
+               </div>
+            </div>
+            <div class="kid">
+               <span class="men-header">kid</span>
+               <div class="rectangle">
+                  <div class="shop-btn-wrapper">
+                     <span class="shop-now">shop now</span>
+                     <img class="arrow" src="../../static/assets/arrow.svg">
+                  </div>
+               </div>
             </div>
          </div>
-         <div class="women">
-            <span class="women-header">women</span>
-            <div class="rectangle">
-
+      </div>
+      <div class="swiper-container">
+         <div class="swiper-wrapper">
+           <div class="swiper-slide">
+            <div class="men">
+               <span class="men-header">men</span>
+               <div class="rectangle">
+                  <div class="shop-btn-wrapper">
+                     <span class="shop-now">shop now</span>
+                  </div>
+               </div>
             </div>
+           </div>
+           <div class="swiper-slide">
+            <div class="women">
+               <span class="women-header">women</span>
+               <div class="rectangle">
+                  <div class="shop-btn-wrapper">
+                     <span class="shop-now">shop now</span>
+                  </div>
+               </div>
+            </div>
+           </div>
+           <div class="swiper-slide">
+            <div class="kid">
+               <span class="men-header">kid</span>
+               <div class="rectangle">
+                  <div class="shop-btn-wrapper">
+                     <span class="shop-now">shop now</span>
+                  </div>
+               </div>
+            </div>
+           </div>
          </div>
-         <div class="kid">
-            <span class="men-header">kid</span>
-            <div class="rectangle">
-
-            </div>
+         <!-- Add Pagination -->
+         <!-- <div class="swiper-pagination"></div> -->
+         <!-- Add Arrows -->
+         <!-- <div class="swiper-button-next"></div>
+         <div class="swiper-button-prev"></div> -->
+       </div>
+      </div>
+   </div>
+   <div class="container">
+      <div class="feauture-wrapper">
+         <div class="feature1">
+            <img src="../../static/assets/free-shipping.svg">
+         </div>
+         <div class="feature2">
+            <img src="../../static/assets/free-return.svg">
+         </div>
+         <div class="feature3">
+            <img src="../../static/assets/authentic.svg">
          </div>
       </div>
    </div>
 </section>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+   var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      effect: "fade",
+      spaceBetween: 30,
+      centeredSlides: true,
+      autoplay: {
+         delay: 2500,
+         disableOnInteraction: false,
+      },
+      pagination: {
+         el: '.swiper-pagination',
+         clickable: true,
+      }
+   });
+</script>
 {% endblock %}
