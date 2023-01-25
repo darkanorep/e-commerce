@@ -3,14 +3,15 @@ from django import forms
 class AddProduct(forms.Form):
 
     GENDER = (  ('Men\'s', 'Men\'s'),
-                ('Ladies', 'Ladies'),
-                ('Teens', 'Teens'),
+                ('Women\'s', 'Women\'s'),
                 ('Kids', 'Kids'),)
 
     CATEGORIES = (  ('Tops', 'Tops'),
                     ('Bottoms', 'Bottoms'),
                     ('Footwear', 'Footwear'),
-                    ('Accessories', 'Accessories'),)
+                    ('Accessories', 'Accessories'),
+                    ('Hat', 'Hat'),
+                    ('Bag', 'Bag'),)
 
     name = forms.CharField(label="Product Name",max_length=200)
     gender = forms.ChoiceField(choices = GENDER)

@@ -3,94 +3,120 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-<section>
-   <div>
-      <div id="header-wrapper">
-         <div class="d-flex header-wrapper">
-            <div class="men">
-               <span class="men-header">men</span>
-               <div class="rectangle">
-                  <div class="shop-btn-wrapper">
-                     <span class="shop-now">shop now</span>
-                     <img class="arrow" src="../../static/assets/arrow.svg">
-                  </div>
+<header>
+   <div id="header-wrapper">
+      <div class="d-flex header-wrapper">
+         <div class="men">
+            <span class="men-header">men</span>
+            <div class="rectangle">
+               <div class="shop-btn-wrapper">
+                  <span class="shop-now">shop now</span>
+                  <img class="arrow" src="../../static/assets/arrow.svg">
                </div>
             </div>
-            <div class="women">
-               <span class="women-header">women</span>
-               <div class="rectangle">
-                  <div class="shop-btn-wrapper">
-                     <span class="shop-now">shop now</span>
-                     <img class="arrow" src="../../static/assets/arrow.svg">
-                  </div>
+         </div>
+         <div class="women">
+            <span class="women-header">women</span>
+            <div class="rectangle">
+               <div class="shop-btn-wrapper">
+                  <span class="shop-now">shop now</span>
+                  <img class="arrow" src="../../static/assets/arrow.svg">
                </div>
             </div>
-            <div class="kid">
-               <span class="men-header">kid</span>
-               <div class="rectangle">
-                  <div class="shop-btn-wrapper">
-                     <span class="shop-now">shop now</span>
-                     <img class="arrow" src="../../static/assets/arrow.svg">
-                  </div>
+         </div>
+         <div class="kid">
+            <span class="men-header">kid</span>
+            <div class="rectangle">
+               <div class="shop-btn-wrapper">
+                  <span class="shop-now">shop now</span>
+                  <img class="arrow" src="../../static/assets/arrow.svg">
                </div>
             </div>
          </div>
       </div>
-      <div class="swiper-container">
-         <div class="swiper-wrapper">
-           <div class="swiper-slide">
-            <div class="men">
-               <span class="men-header">men</span>
-               <div class="rectangle">
-                  <div class="shop-btn-wrapper">
-                     <span class="shop-now">shop now</span>
-                  </div>
+   </div>
+   <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+         <div class="men">
+            <span class="men-header">men</span>
+            <div class="rectangle">
+               <div class="shop-btn-wrapper">
+                  <span class="shop-now">shop now</span>
                </div>
             </div>
-           </div>
-           <div class="swiper-slide">
-            <div class="women">
-               <span class="women-header">women</span>
-               <div class="rectangle">
-                  <div class="shop-btn-wrapper">
-                     <span class="shop-now">shop now</span>
-                  </div>
-               </div>
-            </div>
-           </div>
-           <div class="swiper-slide">
-            <div class="kid">
-               <span class="men-header">kid</span>
-               <div class="rectangle">
-                  <div class="shop-btn-wrapper">
-                     <span class="shop-now">shop now</span>
-                  </div>
-               </div>
-            </div>
-           </div>
          </div>
-         <!-- Add Pagination -->
-         <!-- <div class="swiper-pagination"></div> -->
-         <!-- Add Arrows -->
-         <!-- <div class="swiper-button-next"></div>
-         <div class="swiper-button-prev"></div> -->
-       </div>
+        </div>
+        <div class="swiper-slide">
+         <div class="women">
+            <span class="women-header">women</span>
+            <div class="rectangle">
+               <div class="shop-btn-wrapper">
+                  <span class="shop-now">shop now</span>
+               </div>
+            </div>
+         </div>
+        </div>
+        <div class="swiper-slide">
+         <div class="kid">
+            <span class="men-header">kid</span>
+            <div class="rectangle">
+               <div class="shop-btn-wrapper">
+                  <span class="shop-now">shop now</span>
+               </div>
+            </div>
+         </div>
+        </div>
       </div>
+      <!-- Add Pagination -->
+      <!-- <div class="swiper-pagination"></div> -->
+      <!-- Add Arrows -->
+      <!-- <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div> -->
+    </div>
    </div>
    <div class="container">
-      <div class="feauture-wrapper">
-         <div class="feature1">
-            <img src="../../static/assets/free-shipping.svg">
+      <div class="container-fluid">
+         <div class="feauture-wrapper">
+            <div class="feature1">
+               <img src="../../static/assets/free-shipping.svg">
+            </div>
+            <div class="feature2">
+               <img src="../../static/assets/free-return.svg">
+            </div>
+            <div class="feature3">
+               <img src="../../static/assets/authentic.svg">
+            </div>
          </div>
-         <div class="feature2">
-            <img src="../../static/assets/free-return.svg">
+         <hr>
+      </div>
+   </div>
+</header>
+<span id="categories">
+   <div class="container categories-wrapper">
+      <h2 class="header-categories">browse our categories</h2>
+      <div class="categories-wrapper-one row">
+         <div class="col-lg-2 col-m-6 col-sm-6 top">
+            <img src="../../static/assets/top.svg" class="categories-img">
          </div>
-         <div class="feature3">
-            <img src="../../static/assets/authentic.svg">
+         <div class="col-lg-2 col-m-6 col-sm-6 bottom">
+            <img src="../../static/assets/bottom.svg" class="categories-img">
+         </div>
+         <div class="col-lg-2 col-m-6 col-sm-6 footwear">
+            <img src="../../static/assets/footwear.svg" class="categories-img">
+         </div>
+         <div class="col-lg-2 col-m-6 col-sm-6 accessories">
+            <img src="../../static/assets/accessories.svg" class="categories-img">
+         </div>
+         <div class="col-lg-2 col-m-6 col-sm-6 hat">
+            <img src="../../static/assets/hat.svg" class="categories-img">
+         </div>
+         <div class="col-lg-2 col-m-6 col-sm-6 bag">
+            <img src="../../static/assets/bag.svg" class="categories-img">
          </div>
       </div>
    </div>
-</section>
+</span>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
    var swiper = new Swiper('.swiper-container', {
