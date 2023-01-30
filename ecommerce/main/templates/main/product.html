@@ -13,17 +13,15 @@
     <li>{{p.price}}</li>
     <img src="../../../media/{{p.product_img}}" alt="{{p.name}}_pic" width="400px" height="400px">
     {% if user.is_authenticated %}
-        <form id="description">
-            {% if p.category == 'Footwear' %}
-                <input type="radio" name="description" value="40">
-                <label for="html">40</label><br>
-                <input type="radio" name="description" value="41">
-                <label for="css">41</label><br>
-            {% else %}
-                <input type="radio" name="description" value="S">
-                <label for="html">S</label><br>
-                <input type="radio" name="description" value="M">
-                <label for="css">M</label><br>
+        <form id="size">
+            {% if p.gender == "Men's" and p.category == "Footwear" %}
+                {{men}}
+            {% elif p.gender == "Women's" and p.category == "Footwear" %}
+                {{women}}
+            {% elif p.gender == "Kids" and p.category == "Footwear" %}
+                {{kid}}
+            {% elif p.category == "Tops" or p.category == "Bottoms" %}
+                {{clothes}}
             {% endif %}
         </form>
         <button id='minus-btn' onclick="decrement()"><i class='bx bx-minus'></i></button>

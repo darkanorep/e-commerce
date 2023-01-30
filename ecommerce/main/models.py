@@ -17,7 +17,7 @@ class Product(models.Model):
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    description = models.TextField(null = True, blank=True)
+    size = models.TextField(null = True, blank=True)
     quantity = models.IntegerField()
 
 class Review(models.Model):

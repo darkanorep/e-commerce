@@ -8,20 +8,21 @@ def addtocart(response):
             product_id = int(response.POST.get("product_id"))
             product_check = Product.objects.get(id=product_id)
             quantity = int(response.POST.get("quantity"))
-            description = response.POST.get("description")
+            size = response.POST.get("size")
 
             if (product_check):
-                if (Cart.objects.filter(user=response.user.id, description=description)):
+                if (Cart.objects.filter(user=response.user.id, size=size)):
                         
-                    cart = Cart.objects.get(user = response.user, product_id=product_id, description=description)
+                    cart = Cart.objects.get(user = response.user, product_id=product_id, size=size)
                     cart.quantity += quantity
+                    print(size)
                     cart.save()
 
                     return JsonResponse({"status": "Product Already in Cart"})
                 else:
 
                     if quantity != 0 :
-                        Cart.objects.create(user = response.user, product_id=product_id, quantity=quantity, description=description)
+                        Cart.objects.create(user = response.user, product_id=product_id, quantity=quantity, size=size)
                 
                     return JsonResponse({"status":" Successfully Added"})
             else:
