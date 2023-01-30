@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate
 
 # Create your views here.
+from django.conf import settings
 from django.http.response import JsonResponse, HttpResponseRedirect, HttpResponse
 from .models import Product, Cart, Review
-from .forms import AddProduct, AddReview
-from django.contrib.auth import authenticate, login
+from .forms import AddProduct, clothesSize, menShoesSize, kidShoesSize, womenShoesSize
 
 
 def index(response):
@@ -26,9 +25,14 @@ def product(response, id):
     p = Product.objects.get(id=id)
     review = Review.objects.filter(product_id=id)
     
+    men = menShoesSize()
+    women = womenShoesSize()
+    kid = kidShoesSize()
+    clothes = clothesSize()
+
     if response.user.is_authenticated:
         cartNumber = Cart.objects.filter(user = response.user).count()
-        return render(response, "main/product.html", {"p":p, "cartNumber":cartNumber, "review":review})
+        return render(response, "main/product.html", {"p":p, "cartNumber":cartNumber, "review":review, "men":men, "women":women, "kid":kid, "clothes":clothes})
     
     return render(response, "main/product.html", {"p":p, "review":review})
 
@@ -64,3 +68,7 @@ def addproduct(response):
 
     return render(response, "main/addproduct.html", {"form":form})
 
+def stripe_config(response):
+    if response.method == 'GET':
+        stripe_config = {'publicKey': settings.STRIPE_PUB_KEY}
+        return JsonResponse(stripe_config, safe=False)

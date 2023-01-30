@@ -25,15 +25,15 @@ function decrement() {
     if (numberOfQty == 0 ) minBtn.disabled = true;
 }
 
-$('#description input').on('change', function() {
-    console.log($('input[name=description]:checked', '#description').val())
+$('#size input').on('change', function() {
+    console.log($('input[name=size]:checked', '#size').val())
 }),
 
 $('#add-btn').click(function () {
     location.reload(true);
 
     let currCount = $( "#numberOfQty").val();
-    let description = $('input[name=description]:checked', '#description').val()
+    let size = $('input[name=size]:checked', '#size').val()
 
     $.ajax({
         method: "POST",
@@ -41,7 +41,7 @@ $('#add-btn').click(function () {
         data: {
             "product_id": productId,
             "quantity": currCount,
-            "description": description,
+            "size": size,
             csrfmiddlewaretoken: token
         },
         dataType: 'dataType',

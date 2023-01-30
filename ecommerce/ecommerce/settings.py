@@ -135,3 +135,6 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STRIPE_PUB_KEY = "pk_test_51MVsVsEoOM2qSKyA9yjqgPRE4Bpw8U9BuZIy4djzJnVDr7FEBNdTwQlX8L2o19h8utNGNsfULWrWMX3i5hifL73f00sBrEgY96"
+STRIPE_SECRET_KEY = "sk_test_51MVsVsEoOM2qSKyAt1NJv4obcERWSBlb6BrAQrsRDKFdiiOyhA73o5EhTgOwroKlclyWbGa8e1ob0juvJutQwMgu0035QB9Z8m"
+
