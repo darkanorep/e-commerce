@@ -98,8 +98,9 @@ fetch("/config/")
   // new
   // Event handler
   document.querySelector("#submitBtn").addEventListener("click", () => {
+    
     // Get Checkout Session ID
-    fetch("/create-checkout-session/")
+    fetch("/create_checkout_session/")
     .then((result) => { return result.json(); })
     .then((data) => {
       console.log(data);
@@ -109,5 +110,6 @@ fetch("/config/")
     .then((res) => {
       console.log(res);
     });
+    
   });
 });

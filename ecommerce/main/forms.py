@@ -19,6 +19,7 @@ class AddProduct(forms.Form):
     brand = forms.CharField(label="Brand", max_length=200)
     description = forms.CharField(label="Description", widget=forms.Textarea)
     price = forms.IntegerField(label="Price")
+    stripe_id = forms.CharField(label="StripeID")
     product_img = forms.ImageField(label="Image", required=False)
 
 class AddReview(forms.Form):

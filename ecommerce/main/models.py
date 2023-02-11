@@ -9,6 +9,7 @@ class Product(models.Model):
     brand = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     price = models.IntegerField()
+    stripe_id = models.CharField(max_length=250, null=True)
     product_img = models.ImageField(null = True, blank=True, upload_to='images/')
 
     def __str__(self):
