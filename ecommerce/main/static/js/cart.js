@@ -1,46 +1,35 @@
 let checkboxes = document.getElementsByName('item[]');
-let vals = "";
 let totalss = document.getElementById("total");
 
-let selectItem = []
+let selectItem = [];
+let quantity = [];
 
-for (var i=0; i<checkboxes.length; i++) {
+for (var i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
-        vals += ","+checkboxes[i].value;
-        // console.log(Number(checkboxes[i].value))
-    }
-    selectItem.push(Number(checkboxes[i].value))
-}
-if (vals) vals = vals.substring(1);
-
-//quantity of item
-var qty = document.getElementsByName("quantity[]");
-let quantity = []
-
-for (var i=0; i<qty.length; i++) {
-    if (qty[i]) {
-        quantity.push(Number(qty[i].innerText))
+        selectItem.push(Number(checkboxes[i].value));
+        let qty = document.getElementsByName("quantity[]")[i];
+        quantity.push(Number(qty.innerText));
     }
 }
 
 function total() {
-    let totals = (selectItem, quantity) => {
-        return selectItem.map((e, index) => e * quantity[index]);
+    let computedTotal = 0;
+    for (var i = 0; i < selectItem.length; i++) {
+        computedTotal += selectItem[i] * quantity[i];
     }
-
-    let computedTotal = totals(selectItem, quantity).reduce((a, b) => a + b, 0)
-    totalss.textContent = computedTotal
-    
+    totalss.textContent = computedTotal;
 }
-total()
+total();
+setInterval(function () {
+    total();
+}, 1000);
 
 let token = $('input[name = csrfmiddlewaretoken]').val();
 
 $(".increment-btn").click(function () {
-    let itemId = this.value.split('-')[0]
-    let productId = this.id.split('-')[0]
+    let productId = this.id.split('-')[0];
     let numberOfQty = parseInt(document.getElementById(`${productId}-numberOfQty`).value, 10);
-    $(`#${productId}-numberOfQty`).val(numberOfQty + 1)
+    $(`#${productId}-numberOfQty`).val(numberOfQty + 1);
     $(`#${productId}-quantity`).text(numberOfQty + 1);
     
     $.ajax({
@@ -51,14 +40,12 @@ $(".increment-btn").click(function () {
             "quantity": 1,
             csrfmiddlewaretoken: token
         },
-        dataType: 'dataType',
         success: function(response) {
-            console.log("add to cart")
-            
+            console.log("add to cart");
+            total();
         }
-    })
-})
-
+    });
+});
 
 
 $(".decrement-btn").click(function () {
@@ -85,7 +72,7 @@ $(".decrement-btn").click(function () {
                 "quantity": -1,
                 csrfmiddlewaretoken: token
             }
-        })
+        });
     }
     
 })

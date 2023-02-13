@@ -7,20 +7,15 @@ import stripe
 def create_checkout_session(response):
     if response.method == 'GET':
         stripe.api_key = settings.STRIPE_SECRET_KEY
-        price = Product.objects.values('stripe_id')
-        quantity = Cart.objects.values('quantity')
-
-        item = []
-        
-        for price, quantity in zip(price, quantity):
-            item.append({**price, **quantity})
+        carts = Cart.objects.filter(user = response.user)
         
         item_list = []
-
-        for items in item:
-            price = items.pop('stripe_id')
-            items['price'] = price
-            item_list.append(items)
+        for cart in carts:
+            product = Product.objects.get(id=cart.product.id)
+            item_list.append({
+                'price': product.stripe_id,
+                'quantity': cart.quantity
+            })
 
         try:
             checkout_session = stripe.checkout.Session.create(
@@ -29,7 +24,7 @@ def create_checkout_session(response):
                     {
                     "shipping_rate_data": {
                         "type": "fixed_amount",
-                        "fixed_amount": {"amount": 6000, "currency": "php"},
+                        "fixed_amount": {"amount": 0, "currency": "php"},
                         "display_name": "Shipping Days",
                         "delivery_estimate": {
                         "minimum": {"unit": "business_day", "value": 5},
@@ -43,10 +38,10 @@ def create_checkout_session(response):
                 success_url='http://127.0.0.1:8000/cart',
                 cancel_url='http://127.0.0.1:8000/cart',
             )
-            Cart.objects.filter(user = response.user).delete()
             return JsonResponse({'sessionId': checkout_session['id']})
         except Exception as e:
             return str(e)
 
     return redirect(checkout_session.url, code=303)
+
 

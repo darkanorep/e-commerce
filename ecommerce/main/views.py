@@ -24,17 +24,19 @@ def products(response):
 def product(response, id):
     p = Product.objects.get(id=id)
     review = Review.objects.filter(product_id=id)
-    
-    men = menShoesSize()
-    women = womenShoesSize()
-    kid = kidShoesSize()
-    clothes = clothesSize()
 
+    context = {"p": p, "review": review}
     if response.user.is_authenticated:
-        cartNumber = Cart.objects.filter(user = response.user).count()
-        return render(response, "main/product.html", {"p":p, "cartNumber":cartNumber, "review":review, "men":men, "women":women, "kid":kid, "clothes":clothes})
-    
-    return render(response, "main/product.html", {"p":p, "review":review})
+        cartNumber = Cart.objects.filter(user=response.user).count()
+        context["cartNumber"] = cartNumber
+        context.update({
+            "men": menShoesSize(),
+            "women": womenShoesSize(),
+            "kid": kidShoesSize(),
+            "clothes": clothesSize()
+        })
+    return render(response, "main/product.html", context)
+
 
 def mycart(response):
     if response.user.is_authenticated:
@@ -56,7 +58,7 @@ def addproduct(response):
             b = form.cleaned_data["brand"]
             d = form.cleaned_data["description"]
             pr = form.cleaned_data["price"]
-            s = form.cleaned_data["stripeid"]
+            s = form.cleaned_data["stripe_id"]
             pic = form.cleaned_data["product_img"]
 
             p = Product(name = n, gender = g, category = c, brand = b, description = d, price = pr, stripe_id = s, product_img = pic)
