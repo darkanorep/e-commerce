@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +10,8 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <script src="https://js.stripe.com/v3/"></script>
-    <link href="../../static/css/style.css" rel='stylesheet'>
+    <base href="{% static '/' %}">
+    <link type="text/css" rel='stylesheet' href="../../static/css/style.css">
     <title>{% block title %}e-Commerce{% endblock %}</title>
 </head>
 <body>
@@ -19,7 +21,7 @@
             <div class="container">
                 <div class="row gy-3 align-items-center">
                     <div class="col-lg-2 col-sm-4 col-4">
-                        <a href="#" class="navbar-brand">
+                        <a href="http://127.0.0.1:8000" class="navbar-brand">
                             <img class="logo" height="40" src="../../static/assets/ishop-logo.png">
                         </a> <!-- brand end.// -->
                     </div>
@@ -60,11 +62,11 @@
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
-                      Categories
+                      Catalog
                     </a>
                     <ul class="dropdown-menu">
-                      {% for cat in categories%}
-                        <li><a class="dropdown-item" href="#">{{cat.category}}</a></li>
+                      {% for cat in catalog%}
+                        <li><a class="dropdown-item" href="/products/{{cat.gender}}">{{cat.gender}}</a></li>
                       {% endfor %}
                     </ul>
                   </li>
@@ -107,11 +109,11 @@
             </ul>
             <div class="credential-btn-wrapper container-fluid">
               <li class="nav-item credential">
-                <a href="#"><button class="btn login-btn">Login</button></a>
+                <a href="/login"><button class="btn login-btn">Login</button></a>
               </li>
               <span class="divider"></span>
               <li class="nav-item credential">
-                <a href="#"><button class="btn signup-btn">Signup</button></a>
+                <a href="/register"><button class="btn signup-btn">Signup</button></a>
               </li>
             </div>
           </div>

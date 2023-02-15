@@ -5,26 +5,26 @@
 {% if user.is_staff %}
     <a href="/products/create"><button>Add Product</button></a>
     <div class="row">
-        {% for product in p %}
+        {% for products in p %}
         <div class="col col-lg-3 col-md-3 col-sm-6">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <p class="card-text">{{product.name}}</p>
+                    <p class="card-text">{{products.name}}</p>
                 </div>
-                <a href="{{product.id}}"><img class="card-img-top" src="../../../media/{{product.product_img}}" alt="{{product.name}}_pic" style="height: 50%;"></a>
+                <a href="{{products.id}}"><img class="card-img-top" src="../../../media/{{products.product_img}}" alt="{{products.name}}_pic" style="height: 50%;"></a>
             </div>
         </div>
         {% endfor %}
     </div>
 {% else %}
     <div class="row">
-        {% for product in p %}
+        {% for products in p %}
         <div class="col col-lg-3 col-md-3 col-sm-6">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <p class="card-text">{{product.name}}</p>
+                    <p class="card-text">{{products.name}}</p>
                 </div>
-                <a href="{{product.id}}"><img class="card-img-top" src="../../../media/{{product.product_img}}" alt="{{product.name}}_pic" style="height: 50%;"></a>
+                <a href="/products/{{products.gender}}/{{products.category}}/{{products.id}}"><img class="card-img-top" src="../../../media/{{products.product_img}}" alt="{{products.name}}_pic" style="height: 50%;"></a>
             </div>
         </div>
         {% endfor %}

@@ -7,7 +7,7 @@ class Product(models.Model):
     gender = models.CharField(max_length=200)
     category = models.CharField(max_length=200)
     brand = models.CharField(max_length=200)
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=250)
     price = models.IntegerField()
     stripe_id = models.CharField(max_length=250, null=True)
     product_img = models.ImageField(null = True, blank=True, upload_to='images/')

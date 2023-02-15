@@ -3,6 +3,8 @@ let token = $('input[name = csrfmiddlewaretoken]').val();
 const minBtn = document.getElementById("minus-btn")
 let numberOfQty = parseInt(document.getElementById('numberOfQty').value, 10);
 numberOfQty = isNaN(numberOfQty) ? 0 : numberOfQty;
+let stripeId = document.getElementById('stripeId').value;
+let buyBtn = document.getElementById('submitBtn');
 
 jQuery('#numberOfQty').keyup(function () { 
     this.value = this.value.replace(/[^0-9]/g,'1');
@@ -11,7 +13,6 @@ jQuery('#numberOfQty').keyup(function () {
 });
 
 function increment() {
-    console.log("clicked")
     numberOfQty++;
     document.getElementById('numberOfQty').value = numberOfQty;
 
@@ -74,3 +75,41 @@ $('#add-rvw').submit(function () {
     })
     console.log("add to cart yarn")
 })
+
+
+fetch("/config/")
+.then((result) => { return result.json(); })
+.then((data) => {
+  // Initialize Stripe.js
+  const stripe = Stripe(data.publicKey);
+  buyBtn.addEventListener('click', function(event) { // add 'event' parameter to click listener
+    event.preventDefault(); // prevent default form submit behavior
+
+    let data = {
+        'id': productId,
+        'price': stripeId,
+        'quantity': numberOfQty
+    };
+
+    fetch("/buy_now/", { // use fetch instead of XMLHttpRequest
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': token // include CSRF token in headers
+      },
+      body: JSON.stringify(data)
+    })
+    .then((result) => { return result.json(); })
+    .then((data) => {
+      console.log(data);
+      // Redirect to Stripe Checkout
+      return stripe.redirectToCheckout({sessionId: data.sessionId})
+    })
+    .then((res) => {
+      console.log(res);
+    });
+
+  });
+});
+
+
