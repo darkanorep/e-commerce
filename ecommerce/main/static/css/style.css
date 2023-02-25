@@ -282,19 +282,128 @@ hr {
     color: #000000;
 }
 
-.categories-img {
-    height: 100px;
-    width: 100px;
-    margin: 20px;
+#hero {
+    min-height: 50vh;
+    display: flex;
+    background-color: #1A120B;
+    padding-top: calc(100px);
+    padding-bottom: calc(100px);
 }
-
-.row {
+  
+.hero-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
-
-.categories-wrapper-one {
-    margin: 0 15%;
+  
+.hero-content {
+    font-size: 32px;
+    line-height: 48px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: white;
 }
+
+#categories {
+    height: auto;
+    margin: 5rem 0rem;
+}
+
+.categories-header {
+    width: auto;
+    height: 32px;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 39px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #000000;
+    margin-bottom: 100px;
+}
+
+.categories-wrapper {
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 3fr 3fr 3fr;
+    gap: 20px;
+    grid-template-areas: 
+        "top top top accessories"
+        "footwear hat bag accessories"
+        "footwear bottom bottom bottom"
+}
+
+.top {
+    grid-area: top;
+    background: url(../assets/men-beige-shirt-minimal-outfit.jpg);
+    background-position: 20% 10%;
+    height: 150px;
+    width: auto
+}
+
+.bottom {
+    grid-area: bottom;
+    background: url(../assets/beautiful-fashion-woman-posing-with-elegant-suit.jpg);
+    background-position-x: 20%;
+    background-size: cover;
+    
+}
+
+.accessories {
+    grid-area: accessories;
+    background: url(../assets/cheerful-young-blonde-woman-wearing-sunglasses.jpg);
+    background-position: 50% 20%;
+}
+
+.bag {
+    grid-area: bag;
+    background: url(../assets/close-up-details-accessories-woman-stylish-apparel-walking-street-sunglasses-handbag-pink-jacket-trendy-colors-spring-summer-fashion-trend-elegant-style-drinking-coffee.jpg);
+    background-size: cover;
+    background-position: 60% 0%;
+
+}
+
+.hat {
+    grid-area: hat;
+    background: url(../assets/close-up-modern-man-posing.jpg);
+    background-size: cover;
+    background-position: 0% 30%;
+}
+
+.footwear {
+    grid-area: footwear;
+    background: url(../assets/men-s-ankle-sneakers-white-street-style-apparel-shoot.jpg);
+    background-position: 51% 90%;
+}
+
+
+
+.categories-pic {
+    transition: transform 0.2s, opacity 0.2s, box-shadow 0.2s;
+}
+  
+.categories-pic:hover {
+    transform: scale(1.2);
+    opacity: .8;
+    box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+  
+.categories-name {
+    display: none;
+}
+  
+.categories-pic:hover .categories-name {
+    display: block;
+}
+
+#partners {
+    background-color: #1A120B;
+    height: 50vh;
+}
+
 
 @media (max-width: 991px ) {
 
@@ -328,12 +437,20 @@ hr {
     .feauture-wrapper {
         justify-content: space-between;
     }
-
-
-    .categories-wrapper-one {
-        margin: 0;
-    }
     
+    .categories-wrapper {
+        width: 50%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 3fr 3fr 3fr 3fr 3fr;
+        
+        grid-template-areas: 
+            "top top top top"
+            "hat hat accessories accessories"
+            "footwear footwear accessories accessories"
+            "footwear footwear bag bag"
+            "bottom bottom bottom bottom"
+    }
 }
 
 @media (max-width: 575px ) {
@@ -341,5 +458,68 @@ hr {
     .row>* {
         width: 50%;
         max-width: 50%;
+    }
+
+    .top {
+        grid-area: top;
+        background: url(../assets/men-beige-shirt-minimal-outfit.jpg);
+        background-position: 25% 10%;
+        height: 150px;
+        width: auto;
+        background-size: cover;
+    }
+
+    .bottom {
+        grid-area: bottom;
+        background: url(../assets/beautiful-fashion-woman-posing-with-elegant-suit.jpg);
+        background-position-x: 20%;
+        background-size: cover;
+    }
+
+    .accessories {
+        grid-area: accessories;
+        background: url(../assets/cheerful-young-blonde-woman-wearing-sunglasses.jpg);
+        background-position: 50% 27%;
+    }
+
+    .hat {
+        grid-area: hat;
+        background: url(../assets/close-up-modern-man-posing.jpg);
+        background-size: cover;
+        background-position: 0% 18%;
+    }
+
+    .bag {
+        grid-area: bag;
+        background: url(../assets/close-up-details-accessories-woman-stylish-apparel-walking-street-sunglasses-handbag-pink-jacket-trendy-colors-spring-summer-fashion-trend-elegant-style-drinking-coffee.jpg);
+        background-position: 0px 70%;
+        background-size: cover;
+    }
+
+    .footwear {
+        grid-area: footwear;
+        background: url(../assets/men-s-ankle-sneakers-white-street-style-apparel-shoot.jpg);
+        background-position: 51% 90%;
+    }
+
+    .categories-wrapper {
+        display: grid;
+        width: auto;
+        row-gap: 20px;
+        column-gap: 0px;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "top"
+            "hat"
+            "accessories"
+            "bag"
+            "footwear"
+            "bottom"
+    }
+
+    .categories-pic:hover {
+        transform: scale(1.03);
+        opacity: 90%;
+        box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 }
